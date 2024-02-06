@@ -1,0 +1,18 @@
+import { type Product } from "@/types/product";
+import { ProductCoverImage } from "@/ui/atoms/ProductCoverImage";
+import { ProductDescription } from "@/ui/atoms/ProductDescription";
+
+type ProductListItemProps = {
+  product: Product;
+};
+
+export const ProductListItem = ({
+  product,
+}: ProductListItemProps): JSX.Element => (
+  <li>
+    <article>
+      <ProductCoverImage {...product.coverImage} />
+      <ProductDescription product={product} />
+    </article>
+  </li>
+);
