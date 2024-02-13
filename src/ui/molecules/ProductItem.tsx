@@ -7,7 +7,7 @@ type ProductItemProps = {
 };
 export const ProductItem = ({ product }: ProductItemProps) => {
 	return (
-		<div className="flex w-full flex-col gap-24 md:flex-row">
+		<article className="flex w-full flex-col gap-24 md:flex-row">
 			<div className="flex flex-shrink-0 justify-center rounded-xl bg-gray-100 px-24 py-12">
 				<img
 					className="object-cover mix-blend-multiply"
@@ -42,6 +42,6 @@ export const ProductItem = ({ product }: ProductItemProps) => {
 					</button>
 				</div>
 			</div>
-		</div>
+		</article>
 	);
 };
