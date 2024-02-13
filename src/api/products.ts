@@ -1,6 +1,6 @@
 import { type Product } from "@/types/product";
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+const apiUrl = process.env.API_URL;
 
 export const getPaginatedListOfProducts = async (take: number, offset: number) => {
 	const response = await fetch(`${apiUrl}/products?take=${take}&offset=${offset}`);
