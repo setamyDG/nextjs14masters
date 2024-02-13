@@ -2,13 +2,31 @@ import { type Product } from "@/types/product";
 
 const apiUrl = process.env.API_URL;
 
-export const getPaginatedListOfProducts = async (take: number, offset: number) => {
-	const response = await fetch(`${apiUrl}/products?take=${take}&offset=${offset}`);
+export const getPaginatedListOfProducts = async (take?: number, offset?: number) => {
+	const takeQueryParam = take ? `?take=${take}` : "";
+	const offsetQueryParam = offset ? `&offset=${offset}` : "";
+	const url = `${apiUrl}/products${takeQueryParam}${offsetQueryParam}`;
+
+	const response = await fetch(`${url}`);
 
 	if (!response.ok) {
 		throw new Error("Failed to fetch products");
 	}
 
-	const products = (await response.json()) as Product[];
+	const productsRes = (await response.json()) as Product[];
+
+	const products = productsRes.map((product): Product => {
+		return {
+			id: product.id,
+			title: product.title,
+			description: product.description,
+			image: product.image,
+			price: product.price,
+			category: product.category,
+			rating: product.rating,
+			longDescription: product.longDescription,
+		};
+	});
+
 	return products;
 };
