@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Header } from "@/ui/organisms/Header";
+import { Footer } from "@/ui/organisms/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,10 +19,9 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={inter.className}>
-				<main className="my-12 flex w-full">{children}</main>
-				<footer className="w-full bg-gray-100 p-16 text-center">
-					<p className="font-bold">NEXTJS 14 MASTERS</p>
-				</footer>
+				<Header />
+				<main className="m-8">{children}</main>
+				<Footer />
 			</body>
 		</html>
 	);
