@@ -1,5 +1,6 @@
 import { type Metadata } from "next";
 import { getProductById } from "@/api/product";
+import { ProductItem } from "@/ui/molecules/ProductItem";
 
 type Params = {
 	params: {
@@ -29,7 +30,7 @@ export default async function ProductPage({ params }: Params) {
 	const product = await getProductById(params.id);
 	return (
 		<section className="md:mx-24">
-			<h1>{product.title}</h1>
+			<ProductItem product={product} />
 		</section>
 	);
 }
