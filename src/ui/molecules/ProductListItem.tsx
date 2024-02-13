@@ -3,16 +3,14 @@ import { ProductCoverImage } from "@/ui/atoms/ProductCoverImage";
 import { ProductDescription } from "@/ui/atoms/ProductDescription";
 
 type ProductListItemProps = {
-  product: Product;
+	product: Product;
 };
 
-export const ProductListItem = ({
-  product,
-}: ProductListItemProps): JSX.Element => (
-  <li>
-    <article>
-      <ProductCoverImage {...product.coverImage} />
-      <ProductDescription product={product} />
-    </article>
-  </li>
+export const ProductListItem = ({ product }: ProductListItemProps): JSX.Element => (
+	<li>
+		<article>
+			<ProductCoverImage product={product} />
+			<ProductDescription product={product} />
+		</article>
+	</li>
 );
