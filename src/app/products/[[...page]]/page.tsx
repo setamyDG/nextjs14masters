@@ -17,5 +17,9 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
 		return notFound();
 	}
 
-	return <ProductList products={products || []} />;
+	return (
+		<li data-testid="products-list">
+			<ProductList products={products || []} />
+		</li>
+	);
 }
