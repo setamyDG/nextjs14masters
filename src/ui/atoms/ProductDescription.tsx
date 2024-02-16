@@ -8,9 +8,9 @@ type ProductDescriptionProps = {
 export const ProductDescription = ({
 	product: { title, category, price },
 }: ProductDescriptionProps): JSX.Element => (
-	<div className="mt-2 flex justify-between">
+	<div className="mt-2 flex flex-col">
 		<div>
-			<p className="text-sm font-semibold text-gray-700">{title}</p>
+			<p className="font-semibold text-gray-700">{title}</p>
 			<p className="text-sm text-gray-500">
 				<span className="sr-only">Kategoria:</span>
 				{category}

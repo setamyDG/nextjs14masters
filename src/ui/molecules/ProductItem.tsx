@@ -1,5 +1,5 @@
+import { BadgeDollarSign, ShoppingBag } from "lucide-react";
 import { type Product } from "@/types/product";
-import { Icon } from "@/ui/atoms/Icon";
 import { formatMoney } from "@/utils/intl";
 
 type ProductItemProps = {
@@ -21,7 +21,7 @@ export const ProductItem = ({ product }: ProductItemProps) => {
 					<p>{product.category}</p>
 					<div className="flex items-center gap-4 md:gap-24">
 						<h1 className="mt-2 text-4xl font-bold">{product.title}</h1>
-						<p className="rounded-md bg-gray-500 px-2 text-xl text-white">
+						<p className="rounded-lg bg-gray-500 px-2 text-xl text-white">
 							{formatMoney(product.price / 100)}
 						</p>
 					</div>
@@ -32,13 +32,13 @@ export const ProductItem = ({ product }: ProductItemProps) => {
 					<p className="text-md mt-4">{product.longDescription}</p>
 				</div>
 				<div className="mt-8 flex justify-end gap-4">
-					<button className="flex items-center gap-4  rounded-xl border p-4 shadow-md transition-all hover:scale-105">
+					<button className="flex items-center gap-4 rounded-lg border p-4 shadow-md transition-all hover:scale-105">
 						Add to cart
-						<Icon src="../../cart.svg" onClick={() => {}} alt="" />
+						<ShoppingBag size={24} color="black" />
 					</button>
-					<button className="flex items-center gap-4  rounded-xl border p-4 shadow-md transition-all hover:scale-105">
+					<button className="flex items-center gap-4 rounded-lg border p-4 shadow-md transition-all hover:scale-105">
 						Buy it now
-						<Icon src="../../dollar.svg" onClick={() => {}} alt="" />
+						<BadgeDollarSign size={24} color="black" />
 					</button>
 				</div>
 			</div>

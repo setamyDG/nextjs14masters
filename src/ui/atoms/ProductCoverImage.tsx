@@ -5,13 +5,13 @@ type ProductCoverImageProps = {
 };
 
 export const ProductCoverImage = ({ product }: ProductCoverImageProps): JSX.Element => (
-	<div className="aspect-square cursor-pointer overflow-hidden rounded-lg border bg-slate-50 hover:bg-slate-50">
+	<div className="aspect-square cursor-pointer overflow-hidden  border bg-gray-100">
 		<img
-			width={320}
-			height={320}
+			width={300}
+			height={300}
 			alt={product.title}
 			src={product.image}
-			className="h-full w-full object-cover object-center p-4 transition-transform hover:scale-105"
+			className="h-full w-full object-cover object-center p-4 mix-blend-multiply transition-transform"
 		/>
 	</div>
 );

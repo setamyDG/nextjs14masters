@@ -1,6 +1,6 @@
 import { type Route } from "next";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { ActiveLink } from "@/ui/atoms/ActiveLink";
-import { Icon } from "@/ui/atoms/Icon";
 
 type PaginationProps = {
 	pageNumber: number;
@@ -17,7 +17,7 @@ export const Pagination = ({ pageNumber = 1, totalPages }: PaginationProps) => {
 				activeClassName=""
 				href={pageNumber === 1 ? ("/products" as Route) : `/products/${pageNumber - 1}`}
 			>
-				<Icon src="../arrow-left.svg" alt="Previous page" />
+				<ChevronLeft size={24} color="black" />
 			</ActiveLink>
 			<div className="flex gap-4 rounded-lg px-4 text-white">
 				{Array.from({ length: totalPages }, (_, i) => (
@@ -35,7 +35,7 @@ export const Pagination = ({ pageNumber = 1, totalPages }: PaginationProps) => {
 				activeClassName=""
 				href={pageNumber === totalPages ? `/products/${totalPages}` : `/products/${pageNumber + 1}`}
 			>
-				<Icon src="../arrow-right.svg" alt="Next page" />
+				<ChevronRight size={24} color="black" />
 			</ActiveLink>
 		</article>
 	);

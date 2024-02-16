@@ -1,13 +1,16 @@
-import { type Route } from "next";
 import { ActiveLink } from "@/ui/atoms/ActiveLink";
+import { routes } from "@/const/routes";
 
 export const Navigation = () => {
 	return (
-		<nav className="flex gap-4">
-			<ActiveLink href="/" exact>
-				Home
-			</ActiveLink>
-			<ActiveLink href={"/products" as Route}>All</ActiveLink>
+		<nav>
+			<article className="hidden gap-2 sm:flex">
+				{routes.map((route) => (
+					<ActiveLink exact={route.label === "Home"} key={route.label} href={route.href}>
+						{route.label}
+					</ActiveLink>
+				))}
+			</article>
 		</nav>
 	);
 };
