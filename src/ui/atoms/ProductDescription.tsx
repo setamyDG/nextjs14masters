@@ -10,7 +10,7 @@ export const ProductDescription = ({
 }: ProductDescriptionProps): JSX.Element => (
 	<div className="mt-2 flex flex-col">
 		<div>
-			<p className="font-semibold text-gray-700">{title}</p>
+			<h1 className="font-semibold text-gray-700">{title}</h1>
 			<p className="text-sm text-gray-500">
 				<span className="sr-only">Kategoria:</span>
 				{category}
