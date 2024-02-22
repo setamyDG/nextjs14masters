@@ -1,5 +1,5 @@
 import { type Route } from "next";
-import { Boxes, Facebook, Github, Glasses, Home, Linkedin, Shirt, Zap } from "lucide-react";
+import { Boxes, Facebook, Github, Home, Linkedin } from "lucide-react";
 import { type AppRoute } from "@/types/route";
 
 export const routes: AppRoute[] = [
@@ -12,21 +12,6 @@ export const routes: AppRoute[] = [
 		href: "/products" as Route,
 		label: "All",
 		icon: <Boxes size={24} color="gray" />,
-	},
-	{
-		href: "/tshirts",
-		label: "T-shirts",
-		icon: <Shirt size={24} color="gray" />,
-	},
-	{
-		href: "/hoodies",
-		label: "Hoodies",
-		icon: <Zap size={24} color="gray" />,
-	},
-	{
-		href: "/accessories",
-		label: "Accessories",
-		icon: <Glasses size={24} color="gray" />,
 	},
 ];
 

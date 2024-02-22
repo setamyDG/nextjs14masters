@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
+import { type Route } from "next";
 import { getPaginatedListOfProducts } from "@/api/products";
 import { ProductList } from "@/ui/organisms/ProductList";
+import { Pagination } from "@/ui/molecules/Pagination";
 
 type ProductsPageProps = {
 	params: {
@@ -9,8 +11,8 @@ type ProductsPageProps = {
 };
 
 export async function generateStaticParams() {
-	const products = await getPaginatedListOfProducts();
-	const totalPages = Math.ceil(products.length / 20);
+	const products = await getPaginatedListOfProducts(40, 0);
+	const totalPages = Math.ceil(products.data.length / 8);
 	const paths = Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => ({
 		params: { page: [String(page)] },
 	}));
@@ -18,13 +20,23 @@ export async function generateStaticParams() {
 }
 
 export default async function ProductsPage({ params }: ProductsPageProps) {
-	const offset = params.page ? Number(params.page[0]) * 20 - 20 : 0;
-	const products = await getPaginatedListOfProducts(20, offset);
+	const offset = params.page ? Number(params.page[0]) * 8 - 8 : 0;
+	const products = await getPaginatedListOfProducts(8, offset);
 	const paramsPageLength = params?.page?.length;
 
+	console.log("products", products);
 	if (paramsPageLength >= 2) {
 		return notFound();
 	}
 
-	return <ProductList products={products || []} />;
+	return (
+		<section>
+			<ProductList products={products.data || []} />
+			<Pagination
+				url={`/products` as Route}
+				pageNumber={params.page ? Number(params.page[0]) : 1}
+				totalPages={Math.ceil(products.meta.total / 8)}
+			/>
+		</section>
+	);
 }

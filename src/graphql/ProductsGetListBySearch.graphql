@@ -1,0 +1,8 @@
+query ProductsGetListBySearch($search: String!) {
+	products(search: $search) {
+		data {
+			...ProductsListItem
+		}
+		...ProductsListCount
+	}
+}
