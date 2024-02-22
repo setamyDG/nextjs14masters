@@ -13,6 +13,11 @@ export const routes: AppRoute[] = [
 		label: "All",
 		icon: <Boxes size={24} color="gray" />,
 	},
+	{
+		href: "/categories" as Route,
+		label: "Categories",
+		icon: <Boxes size={24} color="gray" />,
+	},
 ];
 
 export const externalLinks: AppRoute[] = [

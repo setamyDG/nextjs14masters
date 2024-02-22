@@ -5,9 +5,13 @@ import { type ProductsListItemFragment } from "@/gql/graphql";
 
 type ProductListItemProps = {
 	product: ProductsListItemFragment;
+	isSuggestedProduct?: boolean;
 };
 
-export const ProductListItem = ({ product }: ProductListItemProps): JSX.Element => (
+export const ProductListItem = ({
+	product,
+	isSuggestedProduct,
+}: ProductListItemProps): JSX.Element => (
 	<li>
 		<Link href={`/product/${product.id}`}>
 			<article>
@@ -16,6 +20,7 @@ export const ProductListItem = ({ product }: ProductListItemProps): JSX.Element 
 					name={product?.name}
 					price={product?.price}
 					categories={product?.categories}
+					isSuggestedProduct={isSuggestedProduct}
 				/>
 			</article>
 		</Link>
