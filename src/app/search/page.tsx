@@ -14,8 +14,10 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
 	if (!products || products.data.length === 0) return <p>No products found.</p>;
 
 	return (
-		<Suspense key="searchPage" fallback={<Spinner />}>
-			<ProductList products={products.data} />
-		</Suspense>
+		<section>
+			<Suspense key="searchPage" fallback={<Spinner />}>
+				<ProductList products={products.data} />
+			</Suspense>
+		</section>
 	);
 }

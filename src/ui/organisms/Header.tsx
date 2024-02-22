@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import { Navigation } from "@/ui/molecules/Navigation";
 import { Cart } from "@/ui/molecules/Cart";
 import { Search } from "@/ui/atoms/Search";
@@ -10,7 +11,9 @@ export const Header = () => (
 		</Link>
 		<Navigation />
 		<article className="flex items-center gap-8">
-			<Search />
+			<Suspense>
+				<Search />
+			</Suspense>
 			<Cart productsCount={3} />
 		</article>
 	</header>

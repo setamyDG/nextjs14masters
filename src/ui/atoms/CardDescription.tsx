@@ -5,11 +5,21 @@ type CardDescriptionProps = {
 	name: string;
 	price?: number;
 	categories?: ProductsListItemFragment["categories"];
+	isSuggestedProduct?: boolean;
 };
 
-export const CardDescription = ({ name, price, categories }: CardDescriptionProps): JSX.Element => (
+export const CardDescription = ({
+	name,
+	price,
+	categories,
+	isSuggestedProduct,
+}: CardDescriptionProps): JSX.Element => (
 	<div className="mt-2 flex flex-col">
-		<h1 className="font-semibold text-gray-700">{name}</h1>
+		{isSuggestedProduct ? (
+			<h2 className="font-semibold text-gray-700">{name}</h2>
+		) : (
+			<h1 className="font-semibold text-gray-700">{name}</h1>
+		)}
 		{categories && (
 			<p className="text-sm text-gray-500">
 				{categories.map((category) => category.name).join(", ")}

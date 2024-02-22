@@ -38,7 +38,6 @@ export default async function ProductPage({ params }: Params) {
 
 	const suggestedProducts = await getSuggestedProducts(data.product);
 
-	console.log("suggestedProducts", suggestedProducts);
 	return (
 		<section className="md:mx-24">
 			<Suspense key="product" fallback={<Spinner />}>
@@ -48,7 +47,7 @@ export default async function ProductPage({ params }: Params) {
 				{suggestedProducts && (
 					<div data-testid="related-products" className="my-8 border-t">
 						<h2 className="my-8 text-xl font-bold">Related products</h2>
-						<ProductList products={suggestedProducts} />
+						<ProductList products={suggestedProducts} isSuggestedProduct />
 					</div>
 				)}
 			</Suspense>

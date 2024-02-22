@@ -15,7 +15,6 @@ export const CollectionItem = ({ collection }: CollectionItemProps) => (
 			src={`/${collection.slug}.avif`}
 			className="h-[340px] w-full rounded-xl object-cover"
 		/>
-		<h2 className="text-md  font-bold italic">{collection.name}</h2>
-		<p className="text-sm">{collection.description}</p>
+		<h2 className="text-md font-bold italic">{collection.name}</h2>
 	</Link>
 );

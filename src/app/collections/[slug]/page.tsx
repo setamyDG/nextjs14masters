@@ -28,9 +28,7 @@ export default async function CollectionPage({ params }: CollectionsPageProps) {
 	return (
 		<section>
 			<div className="mb-8">
-				<h1 className="text-3xl font-bold" role="heading">
-					{collection.name}
-				</h1>
+				<h1 className="text-3xl font-bold">{collection.name}</h1>
 				<p className="italic">{collection.description}</p>
 			</div>
 			<Suspense key="collectionProducts" fallback={<Spinner />}>

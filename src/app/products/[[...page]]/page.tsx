@@ -24,7 +24,6 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
 	const products = await getPaginatedListOfProducts(8, offset);
 	const paramsPageLength = params?.page?.length;
 
-	console.log("products", products);
 	if (paramsPageLength >= 2) {
 		return notFound();
 	}
