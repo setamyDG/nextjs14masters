@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { type Metadata } from "next";
 import { getPaginatedListOfProducts } from "@/api/products";
 import { ProductList } from "@/ui/organisms/ProductList";
 import { Pagination } from "@/ui/molecules/Pagination";
@@ -17,6 +18,15 @@ export async function generateStaticParams() {
 	}));
 	return paths;
 }
+
+export const metadata: Metadata = {
+	title: "Products",
+	description: "List of all products",
+	openGraph: {
+		title: "Products",
+		description: "List of all products",
+	},
+};
 
 export default async function ProductsPage({ params }: ProductsPageProps) {
 	const offset = params.page ? Number(params.page[0]) * 8 - 8 : 0;
