@@ -1,13 +1,12 @@
 import NextImage from "next/image";
 import Link from "next/link";
-import { type Route } from "next";
 import { type CollectionListItemFragment } from "@/gql/graphql";
 
 type CollectionItemProps = {
 	collection: CollectionListItemFragment;
 };
 export const CollectionItem = ({ collection }: CollectionItemProps) => (
-	<Link href={`/collections/${collection.slug}` as Route}>
+	<Link href={`/collections/${collection.slug}`}>
 		<NextImage
 			width={300}
 			height={200}

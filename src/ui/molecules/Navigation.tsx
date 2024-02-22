@@ -1,4 +1,3 @@
-import { type Route } from "next";
 import { ActiveLink } from "@/ui/atoms/ActiveLink";
 import { routes } from "@/const/routes";
 import { getListOfCategories } from "@/api/categories";
@@ -8,7 +7,7 @@ export const Navigation = async () => {
 
 	const mappedCategories = categories.data.map((category) => ({
 		label: category.name,
-		href: `/categories/${category.slug}/1` as Route,
+		href: `/categories/${category.slug}/1`,
 	}));
 
 	const mergedRoutes = [...routes, ...mappedCategories];
