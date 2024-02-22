@@ -8,6 +8,14 @@ type SearchPageProps = {
 		query: string;
 	};
 };
+
+export async function generateMetadata({ searchParams }: SearchPageProps) {
+	return {
+		title: `Search results for: ${searchParams.query}`,
+		description: `Search results for: ${searchParams.query}`,
+	};
+}
+
 export default async function SearchPage({ searchParams }: SearchPageProps) {
 	const products = await getPaginatedListOfProductsBySearch(searchParams.query);
 
