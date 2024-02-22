@@ -1,32 +1,48 @@
-import { type Product } from "@/types/product";
+import {
+	ProductsGetListBySearchDocument,
+	ProductsGetListDocument,
+	type ProductsListItemFragment,
+	SuggestedProductsGetLitDocument,
+} from "@/gql/graphql";
+import { executeGraphQL } from "@/utils/graphql";
 
-const apiUrl = process.env.API_URL;
+export const getPaginatedListOfProducts = async (take: number, skip: number) => {
+	const graphqlResponse = await executeGraphQL(ProductsGetListDocument, {
+		take,
+		skip,
+	});
 
-export const getPaginatedListOfProducts = async (take?: number, offset?: number) => {
-	const takeQueryParam = take ? `?take=${take}` : "";
-	const offsetQueryParam = offset ? `&offset=${offset}` : "";
-	const url = `${apiUrl}/products${takeQueryParam}${offsetQueryParam}`;
-
-	const response = await fetch(`${url}`);
-
-	if (!response.ok) {
+	if (!graphqlResponse) {
 		throw new Error("Failed to fetch products");
 	}
 
-	const productsRes = (await response.json()) as Product[];
+	return graphqlResponse.products;
+};
 
-	const products = productsRes.map((product): Product => {
-		return {
-			id: product.id,
-			title: product.title,
-			description: product.description,
-			image: product.image,
-			price: product.price,
-			category: product.category,
-			rating: product.rating,
-			longDescription: product.longDescription,
-		};
+export const getPaginatedListOfProductsBySearch = async (search: string) => {
+	const graphqlResponse = await executeGraphQL(ProductsGetListBySearchDocument, {
+		search,
 	});
 
-	return products;
+	if (!graphqlResponse) {
+		throw new Error("Failed to fetch products");
+	}
+
+	return graphqlResponse.products;
+};
+
+export const getSuggestedProducts = async (product: ProductsListItemFragment) => {
+	if (!product) return;
+
+	const graphqlResponse = await executeGraphQL(SuggestedProductsGetLitDocument);
+
+	if (!graphqlResponse) {
+		throw new Error("Failed to fetch products");
+	}
+
+	const suggestedProducts = graphqlResponse.products.data.filter((p: ProductsListItemFragment) =>
+		p.categories.some((category) => category.name === product.categories[0]?.name),
+	);
+
+	return suggestedProducts.slice(0, 4);
 };

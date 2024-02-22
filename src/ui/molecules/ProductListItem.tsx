@@ -1,18 +1,22 @@
 import Link from "next/link";
-import { type Product } from "@/types/product";
-import { ProductCoverImage } from "@/ui/atoms/ProductCoverImage";
-import { ProductDescription } from "@/ui/atoms/ProductDescription";
+import { CardImage } from "@/ui/atoms/CardImage";
+import { CardDescription } from "@/ui/atoms/CardDescription";
+import { type ProductsListItemFragment } from "@/gql/graphql";
 
 type ProductListItemProps = {
-	product: Product;
+	product: ProductsListItemFragment;
 };
 
 export const ProductListItem = ({ product }: ProductListItemProps): JSX.Element => (
 	<li>
 		<Link href={`/product/${product.id}`}>
 			<article>
-				<ProductCoverImage product={product} />
-				<ProductDescription product={product} />
+				<CardImage alt={product?.name} src={product?.images[0]?.url || ""} />
+				<CardDescription
+					name={product?.name}
+					price={product?.price}
+					categories={product?.categories}
+				/>
 			</article>
 		</Link>
 	</li>

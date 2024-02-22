@@ -5,8 +5,9 @@ import { ActiveLink } from "@/ui/atoms/ActiveLink";
 type PaginationProps = {
 	pageNumber: number;
 	totalPages: number;
+	url: Route;
 };
-export const Pagination = ({ pageNumber = 1, totalPages }: PaginationProps) => {
+export const Pagination = ({ pageNumber = 1, totalPages, url }: PaginationProps) => {
 	return (
 		<article
 			aria-label="pagination"
@@ -15,7 +16,7 @@ export const Pagination = ({ pageNumber = 1, totalPages }: PaginationProps) => {
 			<ActiveLink
 				className=""
 				activeClassName=""
-				href={pageNumber === 1 ? ("/products" as Route) : `/products/${pageNumber - 1}`}
+				href={pageNumber === 1 ? `${url}` : (`${url}/${pageNumber - 1}` as Route)}
 			>
 				<ChevronLeft size={24} color="black" />
 			</ActiveLink>
@@ -24,7 +25,7 @@ export const Pagination = ({ pageNumber = 1, totalPages }: PaginationProps) => {
 					<ActiveLink
 						activeClassName={i === pageNumber - 1 ? "bg-black text-white" : ""}
 						key={i}
-						href={i === 0 ? ("/products" as Route) : `/products/${i + 1}`}
+						href={i === 0 ? `${url}` : (`${url}/${i + 1}` as Route)}
 					>
 						{i + 1}
 					</ActiveLink>
@@ -33,7 +34,11 @@ export const Pagination = ({ pageNumber = 1, totalPages }: PaginationProps) => {
 			<ActiveLink
 				className=""
 				activeClassName=""
-				href={pageNumber === totalPages ? `/products/${totalPages}` : `/products/${pageNumber + 1}`}
+				href={
+					pageNumber === totalPages
+						? (`${url}/${totalPages}` as Route)
+						: (`${url}/${pageNumber + 1}` as Route)
+				}
 			>
 				<ChevronRight size={24} color="black" />
 			</ActiveLink>

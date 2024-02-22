@@ -8,7 +8,8 @@ type RouteLabel =
 	| "Hoodies"
 	| "Accessories"
 	| "Privacy"
-	| "Terms of use";
+	| "Terms of use"
+	| "Categories";
 
 export type AppRoute = {
 	href: Route;

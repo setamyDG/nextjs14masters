@@ -1,14 +1,12 @@
-import { type Product } from "@/types/product";
-
-const apiUrl = process.env.API_URL;
+import { ProductGetItemByIdDocument } from "@/gql/graphql";
+import { executeGraphQL } from "@/utils/graphql";
 
 export const getProductById = async (id: string) => {
-	const response = await fetch(`${apiUrl}/products/${id}`);
+	const response = await executeGraphQL(ProductGetItemByIdDocument, { id });
 
-	if (!response.ok) {
+	if (!response) {
 		throw new Error("Failed to fetch product");
 	}
 
-	const product = (await response.json()) as Product;
-	return product;
+	return response;
 };
