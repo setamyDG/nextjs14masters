@@ -6,7 +6,7 @@ type CardImageProps = {
 };
 
 export const CardImage = ({ alt, src }: CardImageProps): JSX.Element => (
-	<div className="aspect-square cursor-pointer overflow-hidden  border bg-gray-100">
+	<div className="aspect-square cursor-pointer overflow-hidden rounded-xl  border bg-gray-100">
 		<NextImage
 			width={300}
 			height={300}

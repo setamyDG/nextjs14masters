@@ -23,7 +23,9 @@ export default async function HomePage() {
 
 	return (
 		<section>
-			<h1 className="mb-4 text-3xl font-bold">New collections</h1>
+			<h1 className="mb-4 w-fit rounded-xl bg-black p-1.5 text-3xl font-bold text-white">
+				New collections
+			</h1>
 			<Suspense key="collectionList" fallback={<Spinner />}>
 				<CollectionList collections={collections.data} />
 			</Suspense>

@@ -46,7 +46,9 @@ export default async function ProductPage({ params }: Params) {
 			<Suspense key="suggestedProducts" fallback={<Spinner />}>
 				{suggestedProducts && (
 					<div data-testid="related-products" className="my-8 border-t">
-						<h2 className="my-8 text-xl font-bold">Related products</h2>
+						<h2 className="my-4 w-fit rounded-xl bg-black p-1.5 text-3xl font-bold text-white">
+							Related products
+						</h2>
 						<ProductList products={suggestedProducts} isSuggestedProduct />
 					</div>
 				)}
