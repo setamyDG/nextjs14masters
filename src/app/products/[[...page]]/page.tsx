@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import { type Route } from "next";
 import { getPaginatedListOfProducts } from "@/api/products";
 import { ProductList } from "@/ui/organisms/ProductList";
 import { Pagination } from "@/ui/molecules/Pagination";
@@ -32,7 +31,7 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
 		<section>
 			<ProductList products={products.data || []} />
 			<Pagination
-				url={`/products` as Route}
+				url="/products"
 				pageNumber={params.page ? Number(params.page[0]) : 1}
 				totalPages={Math.ceil(products.meta.total / 8)}
 			/>

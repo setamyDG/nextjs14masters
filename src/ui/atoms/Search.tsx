@@ -31,7 +31,7 @@ export const Search = () => {
 
 	useEffect(() => {
 		if (debouncedSearch) {
-			router.push(`/search?query=${debouncedSearch}` as Route);
+			router.push(`/search?query=${debouncedSearch}`);
 		}
 	}, [debouncedSearch, router]);
 

@@ -1,4 +1,3 @@
-import { type Route } from "next";
 import { Boxes, Facebook, Github, Home, Linkedin } from "lucide-react";
 import { type AppRoute } from "@/types/route";
 
@@ -9,12 +8,12 @@ export const routes: AppRoute[] = [
 		icon: <Home size={24} color="gray" />,
 	},
 	{
-		href: "/products" as Route,
+		href: "/products",
 		label: "All",
 		icon: <Boxes size={24} color="gray" />,
 	},
 	{
-		href: "/categories" as Route,
+		href: "/categories",
 		label: "Categories",
 		icon: <Boxes size={24} color="gray" />,
 	},
