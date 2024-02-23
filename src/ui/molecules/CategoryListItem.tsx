@@ -11,7 +11,7 @@ export const CategoryListItem = ({ category }: CategoryListItemProps): JSX.Eleme
 	<li>
 		<Link href={`/categories/${category.slug}/1`}>
 			<article>
-				<CardImage alt={category?.name} src={`/${category.name}.avif`} />
+				<CardImage alt={category?.name} src={`./${category.name}.avif`} />
 				<CardDescription name={category?.name} />
 			</article>
 		</Link>

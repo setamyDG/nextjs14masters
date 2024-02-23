@@ -49,7 +49,7 @@ export default async function ProductPage({ params }: Params) {
 						<h2 className="my-4 w-fit rounded-xl bg-black p-1.5 text-3xl font-bold text-white">
 							Related products
 						</h2>
-						<ProductList products={suggestedProducts} isSuggestedProduct />
+						<ProductList products={suggestedProducts} />
 					</div>
 				)}
 			</Suspense>

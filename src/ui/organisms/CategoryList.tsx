@@ -13,6 +13,7 @@ export const CategoryList = ({ categories }: ProductListProps): JSX.Element => (
 				name={category.name}
 				key={category.id}
 				href={`/categories/${category.slug}/1` as Route}
+				src={`/${category.name}.avif`}
 			/>
 		))}
 	</ul>
