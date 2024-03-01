@@ -5,8 +5,8 @@ import { SocialIcons } from "@/ui/molecules/SocialIcons";
 
 export const Footer = () => {
 	return (
-		<footer className="bg-gray-50" aria-labelledby="footer-heading">
-			<div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
+		<footer className="bg-gray-50">
+			<div className="mx-16 max-w-7xl px-6 pb-8 pt-12">
 				<div className="xl:grid xl:grid-cols-3 xl:gap-8">
 					<div className="space-y-8">
 						<Logo />

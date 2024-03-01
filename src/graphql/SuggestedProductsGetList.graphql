@@ -1,5 +1,5 @@
 query SuggestedProductsGetLit {
-	products {
+	products(take: 25, skip: 0) {
 		data {
 			...ProductsListItem
 		}

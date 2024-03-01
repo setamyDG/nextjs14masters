@@ -1,4 +1,4 @@
-query ProductsGetListBySearch($search: String!) {
+query ProductsGetListBySearch($search: String) {
 	products(search: $search) {
 		data {
 			...ProductsListItem

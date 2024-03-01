@@ -1,20 +1,16 @@
-import Link from "next/link";
 import { Suspense } from "react";
 import { Navigation } from "@/ui/molecules/Navigation";
 import { Cart } from "@/ui/molecules/Cart";
 import { Search } from "@/ui/atoms/Search";
-import { Logo } from "@/ui/atoms/Logo";
+
 export const Header = () => (
-	<header className="sticky top-0 z-10 hidden w-full items-center justify-between border border-gray-200 bg-gray-50 px-8 py-6 sm:flex">
-		<Link href="/">
-			<Logo />
-		</Link>
+	<header className="sticky top-0 z-10 hidden w-full items-center justify-between border border-gray-200 bg-gray-50 px-24 py-6 sm:flex">
 		<Navigation />
 		<article className="flex items-center gap-8">
 			<Suspense>
 				<Search />
 			</Suspense>
-			<Cart productsCount={3} />
+			<Cart />
 		</article>
 	</header>
 );

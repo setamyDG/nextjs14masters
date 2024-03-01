@@ -14,6 +14,12 @@ export const metadata: Metadata = {
 		description: "Welcome to the Next.js 14 Masters course!",
 	},
 };
+
+export const generateStaticParams = () => {
+	return {
+		routes: ["/"],
+	};
+};
 export default async function HomePage() {
 	const products = await getPaginatedListOfProducts(8, 0);
 	const collections = await getCollectionsList();
@@ -23,12 +29,10 @@ export default async function HomePage() {
 
 	return (
 		<section>
-			<h1 className="mb-4 w-fit rounded-xl bg-black p-1.5 text-3xl font-bold text-white">
+			<h1 className="mb-4 w-fit rounded-xl bg-black p-1.5 text-2xl font-bold text-white">
 				New collections
 			</h1>
-			<Suspense key="collectionList" fallback={<Spinner />}>
-				<CollectionList collections={collections.data} />
-			</Suspense>
+			<CollectionList collections={collections.data} />
 			<Suspense key="productsListHome" fallback={<Spinner />}>
 				<ProductList products={products.data} />
 			</Suspense>

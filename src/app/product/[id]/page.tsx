@@ -19,34 +19,25 @@ export const generateMetadata = async ({ params }: Params): Promise<Metadata> =>
 	return {
 		title: data.product.name,
 		description: data.product.description,
-		openGraph: {
-			title: data.product.name,
-			description: data.product.description,
-			images: [
-				{
-					url: data.product.images[0]?.url || "",
-					alt: data.product.name,
-				},
-			],
-		},
 	};
 };
 
 export default async function ProductPage({ params }: Params) {
 	const data = await getProductById(params.id);
+
 	if (!data.product) return <p>Product not found.</p>;
 
 	const suggestedProducts = await getSuggestedProducts(data.product);
 
 	return (
-		<section className="md:mx-24">
+		<section>
 			<Suspense key="product" fallback={<Spinner />}>
 				<ProductItem product={data.product} />
 			</Suspense>
 			<Suspense key="suggestedProducts" fallback={<Spinner />}>
 				{suggestedProducts && (
 					<div data-testid="related-products" className="my-8 border-t">
-						<h2 className="my-4 w-fit rounded-xl bg-black p-1.5 text-3xl font-bold text-white">
+						<h2 className="my-4 w-fit rounded-xl bg-black p-1.5 text-2xl font-bold text-white">
 							Related products
 						</h2>
 						<ProductList products={suggestedProducts} />

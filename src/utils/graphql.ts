@@ -4,21 +4,35 @@ type GraphQLResponse<T> =
 	| { data?: undefined; errors: { message: string }[] }
 	| { data: T; errors?: undefined };
 
-export const executeGraphQL = async <TResult, TVariables>(
-	query: TypedDocumentString<TResult, TVariables>,
-	...[variables]: TVariables extends Record<string, never> ? [] : [TVariables]
-): Promise<TResult> => {
-	if (!process.env.GRAPHQL_URL) {
-		throw TypeError("GRAPHQL_URL is not defined");
-	}
+type ExecuteGraphqlArgs<TResult, TVariables> = {
+	query: TypedDocumentString<TResult, TVariables>;
+	variables?: TVariables;
+	cache?: RequestCache;
+	headers?: HeadersInit;
+	next?: NextFetchRequestConfig | undefined;
+};
 
-	const res = await fetch(process.env.GRAPHQL_URL, {
+export const executeGraphQL = async <TResult, TVariables>({
+	query,
+	variables,
+	cache,
+	headers,
+	next,
+}: ExecuteGraphqlArgs<TResult, TVariables>): Promise<TResult> => {
+	// if (!process.env.GRAPHQL_URL) {
+	// 	throw TypeError("GRAPHQL_URL is not defined");
+	// }
+
+	const res = await fetch("https://graphql.hyperfunctor.com/graphql", {
 		method: "POST",
 		body: JSON.stringify({
 			query,
 			variables,
 		}),
+		cache,
+		next,
 		headers: {
+			...headers,
 			"Content-Type": "application/json",
 		},
 	});

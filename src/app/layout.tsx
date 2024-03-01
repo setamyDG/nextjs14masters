@@ -14,16 +14,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
 	children,
+	sidebar,
 }: Readonly<{
 	children: React.ReactNode;
+	sidebar: React.ReactNode;
 }>): JSX.Element {
 	return (
 		<html lang="en">
 			<body className={inter.className}>
 				<Header />
-				<main className="m-8">{children}</main>
+				<main className="mx-8 my-8 sm:mx-24">{children}</main>
 				<BottomNav />
 				<Footer />
+				{sidebar}
 			</body>
 		</html>
 	);
