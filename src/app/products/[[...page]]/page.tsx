@@ -39,6 +39,9 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
 
 	return (
 		<section>
+			<h1 className="mb-4 w-fit rounded-xl bg-black p-1.5 text-2xl font-bold text-white">
+				All products
+			</h1>
 			<ProductList products={products.data || []} />
 			<Pagination
 				url="/products"

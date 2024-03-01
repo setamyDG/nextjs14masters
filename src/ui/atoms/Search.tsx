@@ -27,6 +27,9 @@ export const Search = () => {
 
 	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchValue(event.target.value);
+		if (event.target.value.length === 0) {
+			router.push("/products");
+		}
 	};
 
 	useEffect(() => {

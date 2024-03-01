@@ -23,6 +23,15 @@ export const generateMetadata = async ({ params }: CategoriesNamePageProps) => {
 	};
 };
 
+// export async function generateStaticParams({ params }: CategoriesNamePageProps) {
+// 	const category = await getCategoryProductsBySlug(params.name);
+// 	const totalPages = category ? Math.ceil(category.products.length / 4) : 1;
+// 	const paths = Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => ({
+// 		params: { name: params.name, page: [String(page)] },
+// 	}));
+// 	return paths;
+// }
+
 export default async function CategoriesNamePage({ params }: CategoriesNamePageProps) {
 	const category = await getCategoryProductsBySlug(params.name);
 
@@ -38,8 +47,9 @@ export default async function CategoriesNamePage({ params }: CategoriesNamePageP
 	return (
 		<section>
 			<div className="mb-4">
-				<h1 className="text-2xl font-bold">{category.name}</h1>
-				<p className="italic">{category.description}</p>
+				<h1 className="mb-4 w-fit rounded-xl bg-black p-1.5 text-2xl font-bold text-white">
+					{category.name}
+				</h1>
 			</div>
 			<ProductList products={slicedProducts} />
 			<Pagination

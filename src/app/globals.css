@@ -11,3 +11,17 @@ body {
 		text-wrap: balance;
 	}
 }
+
+@layer components {
+	.sidebar {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		right: -100%; /* Start off-screen */
+		transition: right 0.6s ease-in-out; /* Apply transition */
+	}
+
+	.open {
+		right: 0; /* Slide in when open */
+	}
+}

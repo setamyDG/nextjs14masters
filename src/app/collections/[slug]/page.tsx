@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { getCollectionBySlug } from "@/api/collections";
+import { getCollectionBySlug, getCollectionsList } from "@/api/collections";
 import { Spinner } from "@/ui/atoms/Spinner";
 import { ProductList } from "@/ui/organisms/ProductList";
 
@@ -20,6 +20,14 @@ export const generateMetadata = async ({ params }: CollectionsPageProps) => {
 		},
 	};
 };
+
+export async function generateStaticParams() {
+	const collections = await getCollectionsList();
+	const paths = collections.data.map((collection) => ({
+		params: { slug: collection.slug },
+	}));
+	return paths;
+}
 
 export default async function CollectionPage({ params }: CollectionsPageProps) {
 	const collection = await getCollectionBySlug(params.slug);

@@ -2,7 +2,7 @@ import { CategoriesGetListDocument, CategoryGetItemDocument } from "@/gql/graphq
 import { executeGraphQL } from "@/utils/graphql";
 
 export const getListOfCategories = async () => {
-	const graphqlResponse = await executeGraphQL(CategoriesGetListDocument);
+	const graphqlResponse = await executeGraphQL({ query: CategoriesGetListDocument });
 
 	if (!graphqlResponse) {
 		throw new Error("Failed to fetch categories");
@@ -12,7 +12,10 @@ export const getListOfCategories = async () => {
 };
 
 export const getCategoryProductsBySlug = async (categorySlug: string) => {
-	const graphqlResponse = await executeGraphQL(CategoryGetItemDocument, { slug: categorySlug });
+	const graphqlResponse = await executeGraphQL({
+		query: CategoryGetItemDocument,
+		variables: { slug: categorySlug },
+	});
 
 	if (!graphqlResponse) {
 		throw new Error("Failed to fetch category");

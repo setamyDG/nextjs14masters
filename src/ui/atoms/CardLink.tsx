@@ -12,8 +12,8 @@ export const CardLink = ({ href, name, src }: CardLinkProps) => (
 	<Link className="group relative transition-transform hover:scale-105" href={href}>
 		<figure className="h-[340px]">
 			<NextImage
-				width={200}
-				height={200}
+				width={300}
+				height={300}
 				alt={name}
 				src={src}
 				className="h-full w-full rounded-xl object-cover transition-all hover:shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]"

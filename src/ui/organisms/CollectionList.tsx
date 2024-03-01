@@ -7,7 +7,7 @@ type CollectionListProps = {
 };
 
 export const CollectionList = ({ collections }: CollectionListProps): JSX.Element => (
-	<ul className="mb-8 grid grid-cols-1 gap-8 border-b pb-8 sm:grid-cols-2 md:grid-cols-3">
+	<ul className="mb-8 grid grid-cols-1 gap-8 border-b pb-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
 		{collections.map((collection) => (
 			<CardLink
 				name={collection.name}
