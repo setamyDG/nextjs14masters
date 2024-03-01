@@ -1,7 +1,7 @@
 import { type Route } from "next";
-import { getCategoryProductsBySlug } from "@/api/categories";
 import { Pagination } from "@/ui/molecules/Pagination";
 import { ProductList } from "@/ui/organisms/ProductList";
+import { getCategoryProductsBySlug, getListOfCategories } from "@/api/categories";
 
 type CategoriesNamePageProps = {
 	params: {
@@ -23,14 +23,13 @@ export const generateMetadata = async ({ params }: CategoriesNamePageProps) => {
 	};
 };
 
-// export async function generateStaticParams({ params }: CategoriesNamePageProps) {
-// 	const category = await getCategoryProductsBySlug(params.name);
-// 	const totalPages = category ? Math.ceil(category.products.length / 4) : 1;
-// 	const paths = Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => ({
-// 		params: { name: params.name, page: [String(page)] },
-// 	}));
-// 	return paths;
-// }
+export async function generateStaticParams() {
+	const category = await getListOfCategories();
+	const paths = category.data.map((category) => ({
+		params: { name: category.slug, page: ["1", "2"] },
+	}));
+	return paths;
+}
 
 export default async function CategoriesNamePage({ params }: CategoriesNamePageProps) {
 	const category = await getCategoryProductsBySlug(params.name);
