@@ -6,6 +6,7 @@ type CartSuccessPageProps = {
 		sessionId?: string;
 	};
 };
+
 export default async function CartSuccessPage({ searchParams }: CartSuccessPageProps) {
 	if (!searchParams.sessionId) {
 		redirect("/");

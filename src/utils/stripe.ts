@@ -43,7 +43,7 @@ export const createCheckoutSession = async (
 		})),
 		mode: "payment",
 		success_url: "http://localhost:3000/cart/success?sessionId={CHECKOUT_SESSION_ID}",
-		cancel_url: "http://localhost:3000/cart/cancel",
+		cancel_url: "http://localhost:3000/cart",
 	});
 
 	return checkoutSession;

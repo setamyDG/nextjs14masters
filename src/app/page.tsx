@@ -15,11 +15,6 @@ export const metadata: Metadata = {
 	},
 };
 
-export const generateStaticParams = () => {
-	return {
-		routes: ["/"],
-	};
-};
 export default async function HomePage() {
 	const products = await getPaginatedListOfProducts(8, 0);
 	const collections = await getCollectionsList();
