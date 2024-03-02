@@ -1,21 +1,25 @@
-import { BadgeDollarSign } from "lucide-react";
 import NextImage from "next/image";
 import { revalidateTag } from "next/cache";
 import { formatMoney } from "@/utils/intl";
 import { type ProductsListItemFragment } from "@/gql/graphql";
 import { addProductToCart, getOrCreateCart } from "@/api/cart";
 import { AddToCartButton } from "@/ui/atoms/AddToCartButton";
+import { Rating } from "@/ui/atoms/Rating";
+import { changeItemQuantity } from "@/app/cart/actions";
 
 type ProductItemProps = {
 	product: ProductsListItemFragment;
 };
+
 export const ProductItem = ({ product }: ProductItemProps) => {
 	async function addProductToCartAction(_formData: FormData) {
 		"use server";
 		const cart = await getOrCreateCart();
-		const quantity = 1;
-		const isProductInCart = cart.items.filter((item) => item.product.id === product.id);
-		await addProductToCart(cart.id, product.id, isProductInCart ? quantity + 1 : quantity);
+		const productInCart = cart.items.find((item) => item.product.id === product.id);
+		productInCart
+			? await changeItemQuantity(cart.id, product.id, productInCart.quantity + 1)
+			: await addProductToCart(cart.id, product.id, 1);
+
 		revalidateTag("cart");
 	}
 
@@ -40,9 +44,9 @@ export const ProductItem = ({ product }: ProductItemProps) => {
 						</p>
 					</div>
 					{product?.rating && (
-						<p className="mt-4 text-sm text-gray-500">
-							rating: {product?.rating} / {product.rating} reviews
-						</p>
+						<div className="mt-2">
+							<Rating rating={product.rating} />
+						</div>
 					)}
 					<p className="text-md mt-4 italic text-gray-500">{product.description}</p>
 					<p className="text-md mt-4">{product.description}</p>
@@ -50,10 +54,6 @@ export const ProductItem = ({ product }: ProductItemProps) => {
 				<form className="mt-8 flex justify-end gap-4" action={addProductToCartAction}>
 					<input type="hidden" name="productId" value={product.id} />
 					<AddToCartButton />
-					<button className="flex items-center gap-4 rounded-lg border p-4 shadow-md transition-all hover:scale-105">
-						Buy it now
-						<BadgeDollarSign size={24} color="black" />
-					</button>
 				</form>
 			</div>
 		</article>

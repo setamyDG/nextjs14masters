@@ -24,7 +24,6 @@ export async function POST(request: NextRequest): Promise<Response> {
 
 	switch (event.type) {
 		case "checkout.session.completed": {
-			console.dir(event, { depth: 999 });
 			event.data.object.metadata?.cartId;
 		}
 		case "checkout.session.async_payment_failed": {

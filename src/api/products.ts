@@ -3,15 +3,24 @@ import {
 	ProductsGetListDocument,
 	type ProductsListItemFragment,
 	SuggestedProductsGetLitDocument,
+	type SortDirection,
+	type ProductSortBy,
 } from "@/gql/graphql";
 import { executeGraphQL } from "@/utils/graphql";
 
-export const getPaginatedListOfProducts = async (take: number, skip: number) => {
+export const getPaginatedListOfProducts = async (
+	take: number,
+	skip: number,
+	order?: SortDirection,
+	orderBy?: ProductSortBy,
+) => {
 	const graphqlResponse = await executeGraphQL({
 		query: ProductsGetListDocument,
 		variables: {
 			take,
 			skip,
+			order,
+			orderBy,
 		},
 		next: {
 			revalidate: 15,
@@ -50,8 +59,6 @@ export const getSuggestedProducts = async (currentProduct: ProductsListItemFragm
 	if (!graphqlResponse) {
 		throw new Error("Failed to fetch suggested products");
 	}
-
-	console.dir(graphqlResponse.products.data, { depth: 90 });
 
 	const suggestedProducts = graphqlResponse.products.data
 		.filter(

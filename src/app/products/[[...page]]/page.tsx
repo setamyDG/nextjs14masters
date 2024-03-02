@@ -1,12 +1,19 @@
 import { notFound } from "next/navigation";
 import { type Metadata } from "next";
+import { Suspense } from "react";
 import { getPaginatedListOfProducts } from "@/api/products";
 import { ProductList } from "@/ui/organisms/ProductList";
 import { Pagination } from "@/ui/molecules/Pagination";
+import { Select } from "@/ui/atoms/Select";
+import { type SortDirection, type ProductSortBy } from "@/gql/graphql";
+import { Spinner } from "@/ui/atoms/Spinner";
 
 type ProductsPageProps = {
 	params: {
 		page: string[];
+	};
+	searchParams: {
+		sort: string;
 	};
 };
 
@@ -28,9 +35,12 @@ export const metadata: Metadata = {
 	},
 };
 
-export default async function ProductsPage({ params }: ProductsPageProps) {
+export default async function ProductsPage({ params, searchParams }: ProductsPageProps) {
 	const offset = params.page ? Number(params.page[0]) * 8 - 8 : 0;
-	const products = await getPaginatedListOfProducts(8, offset);
+	const order = searchParams.sort?.includes("-") ? "DESC" : ("ASC" as SortDirection);
+	const orderBy = searchParams.sort?.replace("-", "").toUpperCase() as ProductSortBy;
+	console.log("searchParams", searchParams);
+	const products = await getPaginatedListOfProducts(8, offset, order, orderBy);
 	const paramsPageLength = params?.page?.length;
 
 	if (paramsPageLength >= 2) {
@@ -39,10 +49,15 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
 
 	return (
 		<section>
-			<h1 className="mb-4 w-fit rounded-xl bg-black p-1.5 text-2xl font-bold text-white">
-				All products
-			</h1>
-			<ProductList products={products.data || []} />
+			<div className="flex items-center justify-between">
+				<h1 className="mb-4 w-fit rounded-xl bg-black p-1.5 text-2xl font-bold text-white">
+					All products
+				</h1>
+				<Select />
+			</div>
+			<Suspense key="all products" fallback={<Spinner />}>
+				<ProductList products={products.data || []} />
+			</Suspense>
 			<Pagination
 				url="/products"
 				pageNumber={params.page ? Number(params.page[0]) : 1}
