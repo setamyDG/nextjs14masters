@@ -7,7 +7,7 @@ type CartProductListProps = {
 };
 
 export const CartProductList = ({ cart, isDescription }: CartProductListProps): JSX.Element => (
-	<ul className="flex">
+	<ul className="flex flex-col gap-4">
 		{cart?.items.map((product) => (
 			<CartProduct
 				cartId={cart.id}

@@ -1,17 +1,15 @@
 "use client";
-
-import { ShoppingBag } from "lucide-react";
 import { useFormStatus } from "react-dom";
 
 export const AddToCartButton = () => {
 	const { pending } = useFormStatus();
 	return (
 		<button
+			data-testid="add-to-cart-button"
 			disabled={pending}
-			className="flex items-center gap-4 rounded-lg border p-4 shadow-md transition-all hover:scale-105 disabled:cursor-wait disabled:bg-gray-200"
+			className="mt-4 w-full rounded-md bg-gradient-to-r from-gray-700 to-black py-2 text-center font-semibold text-white opacity-90 transition-all hover:bg-gray-800 hover:opacity-100"
 		>
 			Add to cart
-			<ShoppingBag size={24} color="black" />
 		</button>
 	);
 };

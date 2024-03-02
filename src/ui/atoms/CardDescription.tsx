@@ -9,15 +9,21 @@ type CardDescriptionProps = {
 
 export const CardDescription = ({ product }: CardDescriptionProps): JSX.Element => (
 	<div className="mt-2 flex flex-col">
-		<div className="flex items-center justify-between">
-			<h3 className="font-semibold">{product.name}</h3>
-		</div>
+		<Link href={`/product/${product.id}`}>
+			<h3 role="heading" className="font-semibold">
+				{product.name}
+			</h3>
+		</Link>
 		{product.categories && (
 			<p className="text-sm text-gray-500">
 				{product.categories.map((category) => category.name).join(", ")}
 			</p>
 		)}
-		{product.price && <p className="text-lg font-bold">{formatMoney(product.price / 100)}</p>}
+		{product.price && (
+			<p data-testid="product-price" className="text-lg font-bold">
+				{formatMoney(product.price / 100)}
+			</p>
+		)}
 		<Rating rating={product.rating || 0} />
 		<Link
 			href={`/product/${product.id}`}

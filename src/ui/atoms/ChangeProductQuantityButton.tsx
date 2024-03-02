@@ -18,6 +18,7 @@ export const ChangeProductQuantity = ({
 	return (
 		<form className="flex w-full items-center gap-4">
 			<button
+				data-testid="decrement"
 				disabled={optimisticQuantity === 1}
 				formAction={async () => {
 					setOptimisticQuantity(optimisticQuantity - 1);
@@ -27,8 +28,9 @@ export const ChangeProductQuantity = ({
 			>
 				-
 			</button>
-			<span>{optimisticQuantity}</span>
+			<span data-testid="quantity">{optimisticQuantity}</span>
 			<button
+				data-testid="increment"
 				formAction={async () => {
 					setOptimisticQuantity(optimisticQuantity + 1);
 					await changeItemQuantity(cartId, productId, optimisticQuantity + 1);
