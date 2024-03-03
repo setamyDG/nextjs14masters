@@ -15,7 +15,7 @@ const options = [
 	{ value: "-name", label: "Name (Z to A)" },
 ];
 
-export const Select = () => {
+export const ProductsFilter = () => {
 	const router = useRouter();
 	const searchParams = useSearchParams();
 	const urlQueryParamValue = searchParams.get("sort")?.toString();
@@ -44,14 +44,13 @@ export const Select = () => {
 
 	return (
 		<select
-			className="f cursor-pointer rounded-md border border-r-8 border-transparent px-2 py-1 text-sm font-light outline outline-2 lg:mt-1"
+			className="cursor-pointer rounded-md border border-r-8 border-transparent px-2 py-1 text-sm font-light outline outline-2 lg:mt-1"
 			value={selectedOption}
 			onChange={handleSelectChange}
 		>
 			{options.map((option) => (
-				<option key={option.value} value={option.value}>
+				<option key={option.value} data-testid={option["data-testid"]} value={option.value}>
 					<Link
-						data-testid={option["data-testid"]}
 						href={
 							(`/products` +
 								"?" +

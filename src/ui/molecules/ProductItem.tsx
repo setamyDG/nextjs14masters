@@ -5,14 +5,14 @@ import { type ProductsListItemFragment } from "@/gql/graphql";
 import { addProductToCart, getOrCreateCart } from "@/api/cart";
 import { AddToCartButton } from "@/ui/atoms/AddToCartButton";
 import { Rating } from "@/ui/atoms/Rating";
-import { changeItemQuantity } from "@/app/cart/actions";
+import { changeItemQuantity } from "@/actions/cart";
 
 type ProductItemProps = {
 	product: ProductsListItemFragment;
 };
 
 export const ProductItem = ({ product }: ProductItemProps) => {
-	async function addProductToCartAction(_formData: FormData) {
+	async function addProductToCartAction() {
 		"use server";
 		const cart = await getOrCreateCart();
 		const productInCart = cart.items.find((item) => item.product.id === product.id);
@@ -24,7 +24,7 @@ export const ProductItem = ({ product }: ProductItemProps) => {
 	}
 
 	return (
-		<article className="flex w-full flex-col gap-12 md:flex-row md:gap-24">
+		<section className="flex w-full flex-col gap-12 md:flex-row md:gap-24">
 			<div className="flex flex-shrink-0 justify-center rounded-xl bg-gray-100 px-24 py-12">
 				<NextImage
 					className="object-cover mix-blend-multiply"
@@ -56,6 +56,6 @@ export const ProductItem = ({ product }: ProductItemProps) => {
 					<AddToCartButton />
 				</form>
 			</div>
-		</article>
+		</section>
 	);
 };

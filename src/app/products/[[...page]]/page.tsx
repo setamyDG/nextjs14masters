@@ -4,8 +4,8 @@ import { Suspense } from "react";
 import { getPaginatedListOfProducts } from "@/api/products";
 import { ProductList } from "@/ui/organisms/ProductList";
 import { Pagination } from "@/ui/molecules/Pagination";
-import { Select } from "@/ui/atoms/Select";
-import { type SortDirection, type ProductSortBy } from "@/gql/graphql";
+import { ProductsFilter } from "@/ui/atoms/ProductsFilter";
+import { type ProductSortBy } from "@/gql/graphql";
 import { Spinner } from "@/ui/atoms/Spinner";
 
 type ProductsPageProps = {
@@ -37,9 +37,8 @@ export const metadata: Metadata = {
 
 export default async function ProductsPage({ params, searchParams }: ProductsPageProps) {
 	const offset = params.page ? Number(params.page[0]) * 8 - 8 : 0;
-	const order = searchParams.sort?.includes("-") ? "DESC" : ("ASC" as SortDirection);
+	const order = searchParams.sort?.includes("-") ? "DESC" : "ASC";
 	const orderBy = searchParams.sort?.replace("-", "").toUpperCase() as ProductSortBy;
-	console.log("searchParams", searchParams);
 	const products = await getPaginatedListOfProducts(8, offset, order, orderBy);
 	const paramsPageLength = params?.page?.length;
 
@@ -53,7 +52,7 @@ export default async function ProductsPage({ params, searchParams }: ProductsPag
 				<h1 className="mb-4 w-fit rounded-xl bg-black p-1.5 text-2xl font-bold text-white">
 					All products
 				</h1>
-				<Select />
+				<ProductsFilter />
 			</div>
 			<Suspense key="all products" fallback={<Spinner />}>
 				<ProductList products={products.data || []} />

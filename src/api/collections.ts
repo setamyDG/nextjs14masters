@@ -3,9 +3,11 @@ import { executeGraphQL } from "@/utils/graphql";
 
 export const getCollectionsList = async () => {
 	const graphqlResponse = await executeGraphQL({ query: CollectionsGetListDocument });
+
 	if (!graphqlResponse) {
 		throw new Error("Failed to fetch collections");
 	}
+
 	return graphqlResponse.collections;
 };
 
@@ -18,5 +20,6 @@ export const getCollectionBySlug = async (slug: string) => {
 	if (!graphqlResponse) {
 		throw new Error("Failed to fetch collection");
 	}
+
 	return graphqlResponse.collection;
 };
