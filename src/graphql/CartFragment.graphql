@@ -7,6 +7,9 @@ fragment Cart on Cart {
 			price
 			description
 			rating
+			images {
+				url
+			}
 		}
 		quantity
 	}

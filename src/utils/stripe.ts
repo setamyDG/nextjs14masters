@@ -36,6 +36,8 @@ export const createCheckoutSession = async (
 				currency: "pln",
 				product_data: {
 					name: item.product.name,
+					images: item.product.images.map((image) => image.url),
+					description: item.product.description,
 				},
 				unit_amount: item.product.price,
 			},

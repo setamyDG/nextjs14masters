@@ -1,11 +1,16 @@
 import Link from "next/link";
 import { ShoppingCart, HeartHandshake, Cookie, ReceiptText } from "lucide-react";
+import { type Route } from "next";
 import { routes } from "@/const/routes";
 import { type AppRoute } from "@/types/route";
 
 const LegalLinks: AppRoute[] = [
-	{ href: "#", label: "Privacy", icon: <Cookie size={24} color="gray" /> },
-	{ href: "#", label: "Terms of use", icon: <ReceiptText size={24} color="gray" /> },
+	{ href: "privacy" as Route, label: "Privacy", icon: <Cookie size={24} color="gray" /> },
+	{
+		href: "terms-of-use" as Route,
+		label: "Terms of use",
+		icon: <ReceiptText size={24} color="gray" />,
+	},
 ];
 
 export const FooterLinks = () => (

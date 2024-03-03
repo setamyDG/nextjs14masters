@@ -2,22 +2,28 @@ import { Star } from "lucide-react";
 
 type RatingProps = {
 	rating: number;
+	isAvgTextVisible?: boolean;
 };
 
-export const Rating = ({ rating }: RatingProps) => {
+export const Rating = ({ rating, isAvgTextVisible = true }: RatingProps) => {
 	const renderStars = () => {
 		return Array.from({ length: 5 }, (_, index) => (
 			<Star
 				key={index}
-				fill={index < rating ? "#ffd700" : "#c7c7c7"}
-				color={index < rating ? "#ffd700" : "#c7c7c7"}
+				fill={index < Math.round(rating) ? "#ffd700" : "#c7c7c7"}
+				color={index < Math.round(rating) ? "#ffd700" : "#c7c7c7"}
 				size="16"
 			/>
 		));
 	};
 
 	return (
-		<div data-testid="product-rating" className="flex">
+		<div className="flex text-center">
+			{isAvgTextVisible && (
+				<span data-testid="product-rating" className="mr-2 text-xs">
+					{rating.toFixed(1)} / 5
+				</span>
+			)}
 			{renderStars()}
 		</div>
 	);

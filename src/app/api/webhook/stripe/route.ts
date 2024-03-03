@@ -2,6 +2,7 @@
 
 import { type NextRequest } from "next/server";
 import type Stripe from "stripe";
+import { cookies } from "next/headers";
 import { initStripe } from "@/utils/stripe";
 
 export async function POST(request: NextRequest): Promise<Response> {
@@ -22,15 +23,18 @@ export async function POST(request: NextRequest): Promise<Response> {
 		process.env.STRIPE_WEBHOOK_SECRET,
 	) as Stripe.DiscriminatedEvent;
 
+	console.log("Event type", event.type);
 	switch (event.type) {
 		case "checkout.session.completed": {
-			event.data.object.metadata?.cartId;
+			console.log("Payment completed", event.data.object.metadata?.cartId);
+			cookies().set("cartId", "");
 		}
 		case "checkout.session.async_payment_failed": {
 			console.log("Payment failed", event.data.object.metadata?.cartId);
 		}
 		case "checkout.session.async_payment_succeeded": {
 			console.log("Payment succeeded", event.data.object.metadata?.cartId);
+			cookies().set("cartId", "");
 		}
 		case "checkout.session.expired": {
 			console.log("Session expired", event.data.object.metadata?.cartId);

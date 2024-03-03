@@ -296,16 +296,16 @@ export type CartCreateMutationVariables = Exact<{
 }>;
 
 
-export type CartCreateMutation = { cartFindOrCreate: { id: string, items: Array<{ quantity: number, product: { id: string, name: string, price: number, description: string, rating?: number | null } }> } };
+export type CartCreateMutation = { cartFindOrCreate: { id: string, items: Array<{ quantity: number, product: { id: string, name: string, price: number, description: string, rating?: number | null, images: Array<{ url: string }> } }> } };
 
-export type CartFragment = { id: string, items: Array<{ quantity: number, product: { id: string, name: string, price: number, description: string, rating?: number | null } }> };
+export type CartFragment = { id: string, items: Array<{ quantity: number, product: { id: string, name: string, price: number, description: string, rating?: number | null, images: Array<{ url: string }> } }> };
 
 export type CartGetByIdQueryVariables = Exact<{
   id: Scalars['ID']['input'];
 }>;
 
 
-export type CartGetByIdQuery = { cart?: { id: string, items: Array<{ quantity: number, product: { id: string, name: string, price: number, description: string, rating?: number | null } }> } | null };
+export type CartGetByIdQuery = { cart?: { id: string, items: Array<{ quantity: number, product: { id: string, name: string, price: number, description: string, rating?: number | null, images: Array<{ url: string }> } }> } | null };
 
 export type CartRemoveProductMutationVariables = Exact<{
   cartId: Scalars['ID']['input'];
@@ -422,6 +422,9 @@ export const CartFragmentDoc = new TypedDocumentString(`
       price
       description
       rating
+      images {
+        url
+      }
     }
     quantity
   }
@@ -509,6 +512,9 @@ export const CartCreateDocument = new TypedDocumentString(`
       price
       description
       rating
+      images {
+        url
+      }
     }
     quantity
   }
@@ -528,6 +534,9 @@ export const CartGetByIdDocument = new TypedDocumentString(`
       price
       description
       rating
+      images {
+        url
+      }
     }
     quantity
   }
