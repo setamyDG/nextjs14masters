@@ -17,14 +17,14 @@ type ProductsPageProps = {
 	};
 };
 
-export async function generateStaticParams() {
-	const products = await getPaginatedListOfProducts(40, 0);
-	const totalPages = Math.ceil(products.data.length / 8);
-	const paths = Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => ({
-		params: { page: [String(page)] },
-	}));
-	return paths;
-}
+// export async function generateStaticParams() {
+// 	const products = await getPaginatedListOfProducts(40, 0);
+// 	const totalPages = Math.ceil(products.data.length / 8);
+// 	const paths = Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => ({
+// 		params: { page: [String(page)] },
+// 	}));
+// 	return paths;
+// }
 
 export const metadata: Metadata = {
 	title: "Products",
@@ -56,12 +56,12 @@ export default async function ProductsPage({ params, searchParams }: ProductsPag
 			</div>
 			<Suspense key="all products" fallback={<Spinner />}>
 				<ProductList products={products.data || []} />
+				<Pagination
+					url="/products"
+					pageNumber={params.page ? Number(params.page[0]) : 1}
+					totalPages={Math.ceil(products.meta.total / 8)}
+				/>
 			</Suspense>
-			<Pagination
-				url="/products"
-				pageNumber={params.page ? Number(params.page[0]) : 1}
-				totalPages={Math.ceil(products.meta.total / 8)}
-			/>
 		</section>
 	);
 }

@@ -13,13 +13,13 @@ export const metadata: Metadata = {
 	},
 };
 
-export async function generateStaticParams() {
-	const categories = await getListOfCategories();
-	const paths = categories.data.map((category) => ({
-		params: { name: category.slug },
-	}));
-	return paths;
-}
+// export async function generateStaticParams() {
+// 	const categories = await getListOfCategories();
+// 	const paths = categories.data.map((category) => ({
+// 		params: { name: category.slug },
+// 	}));
+// 	return paths;
+// }
 
 export default async function CategoriesPage() {
 	const categoriesList = await getListOfCategories();
