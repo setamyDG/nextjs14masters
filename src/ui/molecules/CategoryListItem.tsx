@@ -8,9 +8,9 @@ type CategoryListItemProps = {
 
 export const CategoryListItem = ({ category }: CategoryListItemProps): JSX.Element => {
 	const categoryImage: Record<CategoriesListItemFragment["name"], string> = {
-		accessories: "./accessories.avif",
-		hoodies: "./hoodies.avif",
-		"t-shirts": "./t-shirts.avif",
+		Accessories: "./accessories.avif",
+		Hoodies: "./hoodies.avif",
+		"T-shirts": "./t-shirts.avif",
 	};
 
 	return (
