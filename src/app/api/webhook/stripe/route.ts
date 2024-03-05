@@ -23,7 +23,6 @@ export async function POST(request: NextRequest): Promise<Response> {
 		process.env.STRIPE_WEBHOOK_SECRET,
 	) as Stripe.DiscriminatedEvent;
 
-	console.log("Event type", event.type);
 	switch (event.type) {
 		case "checkout.session.completed": {
 			console.log("Payment completed", event.data.object.metadata?.cartId);

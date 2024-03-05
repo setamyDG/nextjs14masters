@@ -1,4 +1,5 @@
 import Stripe from "stripe";
+import { cookies } from "next/headers";
 import { getCartById } from "@/api/cart";
 
 export const initStripe = () => {
@@ -48,5 +49,6 @@ export const createCheckoutSession = async (
 		cancel_url: "http://localhost:3000/cart",
 	});
 
+	cookies().set("cartId", "");
 	return checkoutSession;
 };

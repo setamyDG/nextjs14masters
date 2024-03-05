@@ -26,6 +26,7 @@ const documents = {
     "query CollectionGetItem($slug: String!) {\n  collection(slug: $slug) {\n    ...CollectionListItem\n    products {\n      ...ProductsListItem\n    }\n  }\n}": types.CollectionGetItemDocument,
     "fragment CollectionListItem on Collection {\n  description\n  id\n  name\n  slug\n}": types.CollectionListItemFragmentDoc,
     "query CollectionsGetList {\n  collections(take: 4) {\n    data {\n      ...CollectionListItem\n    }\n  }\n}": types.CollectionsGetListDocument,
+    "query OrdersGetByUserEmail($email: String!) {\n  orders(email: $email) {\n    data {\n      id\n      status\n      lines\n    }\n    meta {\n      total\n      count\n    }\n  }\n}": types.OrdersGetByUserEmailDocument,
     "mutation ProductAddReview($author: String!, $description: String!, $email: String!, $productId: ID!, $rating: Int!, $title: String!) {\n  reviewCreate(\n    author: $author\n    description: $description\n    email: $email\n    productId: $productId\n    rating: $rating\n    title: $title\n  ) {\n    id\n  }\n}": types.ProductAddReviewDocument,
     "query ProductGetItemById($id: ID!) {\n  product(id: $id) {\n    ...ProductsListItem\n  }\n}": types.ProductGetItemByIdDocument,
     "query ProductGetReviews($productId: ID!) {\n  product(id: $productId) {\n    reviews {\n      ...ProductReview\n    }\n  }\n}": types.ProductGetReviewsDocument,
@@ -85,6 +86,10 @@ export function graphql(source: "fragment CollectionListItem on Collection {\n  
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "query CollectionsGetList {\n  collections(take: 4) {\n    data {\n      ...CollectionListItem\n    }\n  }\n}"): typeof import('./graphql').CollectionsGetListDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query OrdersGetByUserEmail($email: String!) {\n  orders(email: $email) {\n    data {\n      id\n      status\n      lines\n    }\n    meta {\n      total\n      count\n    }\n  }\n}"): typeof import('./graphql').OrdersGetByUserEmailDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

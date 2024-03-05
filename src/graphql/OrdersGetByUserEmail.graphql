@@ -1,0 +1,13 @@
+query OrdersGetByUserEmail($email: String!) {
+	orders(email: $email) {
+		data {
+			id
+			status
+			lines
+		}
+		meta {
+			total
+			count
+		}
+	}
+}

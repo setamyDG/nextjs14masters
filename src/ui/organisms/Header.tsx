@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { Navigation } from "@/ui/molecules/Navigation";
 import { Cart } from "@/ui/molecules/Cart";
 import { Search } from "@/ui/atoms/Search";
@@ -11,6 +12,14 @@ export const Header = () => (
 				<Search />
 			</Suspense>
 			<Cart />
+			<div>
+				<SignedIn>
+					<UserButton />
+				</SignedIn>
+				<SignedOut>
+					<SignInButton />
+				</SignedOut>
+			</div>
 		</article>
 	</header>
 );

@@ -14,7 +14,7 @@ export async function POST(request: NextRequest): Promise<Response> {
 		revalidatePath(`/product/${body.productId}`);
 		console.log(`Revalidating /products`);
 		revalidatePath(`/products`);
-		return new NextResponse(JSON.stringify({ message: "success" }), { status: 200 });
+		return new NextResponse(JSON.stringify({ message: "success" }), { status: 204 });
 	} else {
 		return new NextResponse(JSON.stringify({ message: "invalid request" }), { status: 400 });
 	}
