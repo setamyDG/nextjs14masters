@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { CartChangeProductQuantityDocument, CartRemoveProductDocument } from "@/gql/graphql";
 import { executeGraphQL } from "@/utils/graphql";
 import { createCheckoutSession, initStripe } from "@/utils/stripe";
+import { addProductToCart, getOrCreateCart } from "@/api/cart";
 
 export const changeItemQuantity = async (cartId: string, productId: string, quantity: number) => {
 	await executeGraphQL({
@@ -41,4 +42,15 @@ export async function handlePaymentAction() {
 	}
 
 	redirect(checkoutSession.url);
+}
+
+export async function addProductToCartAction(productId: string) {
+	"use server";
+	const cart = await getOrCreateCart();
+	const productInCart = cart.items.find((item) => item.product.id === productId);
+	productInCart
+		? await changeItemQuantity(cart.id, productId, productInCart.quantity + 1)
+		: await addProductToCart(cart.id, productId, 1);
+
+	revalidateTag("cart");
 }

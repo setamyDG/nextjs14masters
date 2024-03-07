@@ -1,6 +1,7 @@
 import Stripe from "stripe";
+import { currentUser } from "@clerk/nextjs";
 import { cookies } from "next/headers";
-import { getCartById } from "@/api/cart";
+import { completeCart, getCartById } from "@/api/cart";
 
 export const initStripe = () => {
 	if (!process.env.STRIPE_SECRET_KEY) {
@@ -22,6 +23,8 @@ export const createCheckoutSession = async (
 	stripe: Stripe,
 ): Promise<Stripe.Response<Stripe.Checkout.Session>> => {
 	const cart = await getCartById();
+	const user = await currentUser();
+	const email = user?.emailAddresses[0]?.emailAddress || "";
 
 	if (!cart) {
 		throw new Error("Cart not found");
@@ -49,6 +52,7 @@ export const createCheckoutSession = async (
 		cancel_url: "http://localhost:3000/cart",
 	});
 
+	await completeCart(cart.id, email);
 	cookies().set("cartId", "");
 	return checkoutSession;
 };

@@ -5,10 +5,11 @@ export default authMiddleware({
 		"/",
 		"/search",
 		"/cart",
+		"/categories",
 		"/categories/(.*)",
 		"/collections/(.*)",
 		"/product/(.*)",
-		"/products",
+		"/products/(.*)",
 	],
 	ignoredRoutes: ["/api/(.*)"],
 });

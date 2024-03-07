@@ -11,6 +11,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
 	title: "NextJS 14 masters",
 	description: "Shopify - Course application",
+	metadataBase: new URL("https://nextjs14masters.com"),
 };
 
 export default function RootLayout({

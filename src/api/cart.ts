@@ -4,6 +4,7 @@ import {
 	CartCreateDocument,
 	type CartFragment,
 	CartGetByIdDocument,
+	CartCompleteDocument,
 } from "@/gql/graphql";
 import { executeGraphQL } from "@/utils/graphql";
 
@@ -62,6 +63,17 @@ export const addProductToCart = async (cartId: string, productId: string, quanti
 			cartId,
 			productId,
 			quantity,
+		},
+		cache: "no-store",
+	});
+};
+
+export const completeCart = async (cartId: string, userEmail: string) => {
+	await executeGraphQL({
+		query: CartCompleteDocument,
+		variables: {
+			cartId,
+			userEmail,
 		},
 		cache: "no-store",
 	});
