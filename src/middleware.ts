@@ -10,6 +10,8 @@ export default authMiddleware({
 		"/collections/(.*)",
 		"/product/(.*)",
 		"/products/(.*)",
+		"/terms-of-use",
+		"/privacy",
 	],
 	ignoredRoutes: ["/api/(.*)"],
 });
