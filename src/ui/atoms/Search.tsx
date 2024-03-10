@@ -23,14 +23,14 @@ export const Search = () => {
 		[searchParams],
 	);
 
-	const debouncedSearch = useDebounce(searchValue, 1500);
-
 	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchValue(event.target.value);
 		if (event.target.value.length === 0) {
 			router.push("/products");
 		}
 	};
+
+	const debouncedSearch = useDebounce(searchValue, 1500);
 
 	useEffect(() => {
 		if (debouncedSearch) {
@@ -41,7 +41,7 @@ export const Search = () => {
 	return (
 		<div className="flex items-center justify-center gap-2 rounded-md border bg-white">
 			<Link
-				href={(`/search` + "?" + createQueryString("query", searchValue)) as Route}
+				href={(`/search` + "?" + createQueryString("query", debouncedSearch)) as Route}
 				className="flex h-full w-[40px] cursor-pointer items-center justify-center border-r bg-white"
 			>
 				<SearchIcon color="gray" size={16} />
