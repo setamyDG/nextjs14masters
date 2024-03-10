@@ -16,13 +16,13 @@ export const ReviewItem = ({ review }: ReviewItemProps) => (
 			</div>
 			<div className="flex items-center gap-1">
 				<Calendar size={16} />
-				<p className="text-sm text-gray-500">
+				<time className="text-sm text-gray-500">
 					{Intl.DateTimeFormat("en-US", {
 						year: "numeric",
 						month: "long",
 						day: "2-digit",
 					}).format(new Date(review.createdAt as string))}
-				</p>
+				</time>
 			</div>
 		</div>
 		<div className="mt-4 space-y-6">

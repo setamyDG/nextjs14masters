@@ -1,6 +1,5 @@
 import { routes } from "@/const/routes";
 import { ActiveLink } from "@/ui/atoms/ActiveLink";
-import { Cart } from "@/ui/molecules/Cart";
 
 export const BottomNav = () => (
 	<nav className="sticky bottom-0 w-full border-b border-t border-slate-200 bg-gray-50 py-4 lg:hidden">
@@ -12,7 +11,6 @@ export const BottomNav = () => (
 					</ActiveLink>
 				</li>
 			))}
-			<Cart />
 		</ul>
 	</nav>
 );

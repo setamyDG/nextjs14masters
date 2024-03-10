@@ -33,9 +33,13 @@ export const Search = () => {
 	};
 
 	useEffect(() => {
+		let timeout: NodeJS.Timeout;
 		if (debouncedSearch) {
-			router.push(`/search?query=${debouncedSearch}`);
+			timeout = setTimeout(() => {
+				router.push(`/search?query=${debouncedSearch}`);
+			}, 1500);
 		}
+		return () => clearTimeout(timeout);
 	}, [debouncedSearch, router]);
 
 	return (

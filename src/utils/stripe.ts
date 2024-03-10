@@ -30,6 +30,8 @@ export const createCheckoutSession = async (
 		throw new Error("Cart not found");
 	}
 
+	// const envUrl = process.env.NEXT_PUBLIC_URL || "http://localhost:3000";
+
 	const checkoutSession = await stripe.checkout.sessions.create({
 		payment_method_types: ["card"],
 		metadata: {
@@ -37,7 +39,7 @@ export const createCheckoutSession = async (
 		},
 		line_items: cart.items.map((item) => ({
 			price_data: {
-				currency: "pln",
+				currency: "usd",
 				product_data: {
 					name: item.product.name,
 					images: item.product.images.map((image) => image.url),
@@ -48,8 +50,8 @@ export const createCheckoutSession = async (
 			quantity: item.quantity,
 		})),
 		mode: "payment",
-		success_url: "http://localhost:3000/cart/success?sessionId={CHECKOUT_SESSION_ID}",
-		cancel_url: "http://localhost:3000/cart",
+		success_url: `/cart/success?sessionId={CHECKOUT_SESSION_ID}`,
+		cancel_url: `/cart`,
 	});
 
 	await completeCart(cart.id, email);

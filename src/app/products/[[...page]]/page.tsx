@@ -7,7 +7,7 @@ import { Pagination } from "@/ui/molecules/Pagination";
 import { ProductsFilter } from "@/ui/atoms/ProductsFilter";
 import { type ProductSortBy } from "@/gql/graphql";
 import { Spinner } from "@/ui/atoms/Spinner";
-
+import { Hero } from "@/ui/molecules/Hero";
 type ProductsPageProps = {
 	params: {
 		page: string[];
@@ -48,6 +48,7 @@ export default async function ProductsPage({ params, searchParams }: ProductsPag
 
 	return (
 		<section>
+			<Hero />
 			<div className="flex items-center justify-between">
 				<h1 className="mb-4 w-fit rounded-xl bg-black p-1.5 text-2xl font-bold text-white">
 					All products

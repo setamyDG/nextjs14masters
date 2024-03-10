@@ -1,5 +1,13 @@
+import MDX from "@next/mdx";
+
+const withMDX = MDX();
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+	// output: 'standalone' = dobra dla docker,
+	// dlaczego nie ma styli ? recznie trzeba skopiowac zawartosc/folder public do ./next/standalone/.next/static
+	// output: 'export' = generuje wszystko statycznie, nie mozna uzywac akcji serverowych - dobre dla blogów, stron typu portfolio itp
+	output: "standalone",
 	logging: {
 		fetches: {
 			fullUrl: true,
@@ -9,6 +17,9 @@ const nextConfig = {
 		remotePatterns: [
 			{
 				hostname: "static-ourstore.hyperfunctor.com",
+			},
+			{
+				hostname: "images.unsplash.com",
 			},
 		],
 	},
@@ -32,5 +43,4 @@ const nextConfig = {
 	},
 };
 
-const withMDX = require("@next/mdx")();
-module.exports = withMDX(nextConfig);
+export default withMDX(nextConfig);
