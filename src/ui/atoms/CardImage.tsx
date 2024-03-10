@@ -13,8 +13,8 @@ export const CardImage = ({ alt, src }: CardImageProps): JSX.Element => (
 			<p className="hidden rounded-md text-sm text-white lg:block">in stock</p>
 		</div>
 		<NextImage
-			width={300}
-			height={300}
+			width={150}
+			height={150}
 			alt={alt}
 			src={src}
 			className="h-full w-full object-cover object-center p-4 mix-blend-multiply transition-transform"

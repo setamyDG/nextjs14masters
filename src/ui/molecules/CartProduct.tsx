@@ -20,8 +20,8 @@ export const CartProduct = ({ cartId, quantity, product, isDescription }: Props)
 				<Image
 					src={product.images[0]?.url || ""}
 					alt={product.name}
-					width={300}
-					height={300}
+					width={150}
+					height={150}
 					className="h-full w-full rounded-md object-cover"
 				/>
 			</div>

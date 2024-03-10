@@ -12,7 +12,7 @@ export const Drawer = ({ cart }: SidebarProps) => {
 		cart && cart.items.reduce((acc, item) => acc + item.quantity * item.product.price, 0);
 
 	return (
-		<aside className="fixed inset-y-0 right-0 z-50 w-[450px] bg-white p-4 shadow-lg transition-transform ">
+		<aside className="fixed inset-y-0 right-0 z-50 flex w-[450px] flex-col bg-white p-4 shadow-lg transition-transform ">
 			<div className="flex items-center justify-between border-b border-gray-200 px-4 py-2">
 				<h3 className="text-lg font-semibold">Products</h3>
 				<a

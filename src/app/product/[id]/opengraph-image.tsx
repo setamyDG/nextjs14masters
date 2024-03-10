@@ -21,10 +21,9 @@ export default async function og({ params }: { params: { id: string } }) {
 			<div tw="relative w-full overflow-hidden rounded-lg flex">
 				<div tw="flex items-center justify-center">
 					<Image
-						priority
 						tw="h-full w-full object-cover object-center"
-						width={400}
-						height={400}
+						width={200}
+						height={200}
 						src={data.product.images[0]?.url || "/placeholder.png"}
 						alt={data.product.name}
 					/>
