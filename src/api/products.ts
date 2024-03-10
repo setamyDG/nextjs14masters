@@ -34,7 +34,7 @@ export const getPaginatedListOfProducts = async (
 	return graphqlResponse.products;
 };
 
-export const getPaginatedListOfProductsBySearch = async (search?: string) => {
+export const getPaginatedListOfProductsBySearch = async (search: string) => {
 	if (!search?.length) return;
 
 	const graphqlResponse = await executeGraphQL({
